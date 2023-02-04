@@ -17,4 +17,4 @@ pipeline {
          post {
          always {
              bat "docker rmi $registry 1" // delete the local image at the end
-         }}
+         }}}
