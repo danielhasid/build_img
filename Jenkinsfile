@@ -8,12 +8,13 @@ pipeline {
             steps {
                script {
                     dockerImage = docker.build registry + "1" // give a name and version to image
-                    docker.withRegistry('', registryCredential) {
+                    docker.withRegistry('', registryCredential) 
                     dockerImage.push() // push image to hub
                 }
             }
         }
+        
          post {
          always {
              bat "docker rmi $registry 1" // delete the local image at the end
-}}}
+         }}
