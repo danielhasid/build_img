@@ -1,8 +1,8 @@
 pipeline {
     environment {
-    registry = "dhasid1/daniel_repository"  // he name of your user and repository (which can be created manually)
-    registryCredential = 'ckfa‘ // The credentials used to your repo
-    dockerImage = 'python_img‘ // will be overridden later
+    registry = "docker push dhasid1/daniel_repository"  // he name of your user and repository (which can be created manually)
+    registryCredential = 'ckfa' // The credentials used to your repo
+    dockerImage = 'python_img' // will be overridden later
   }
         stage('build and push image') {
             steps {
@@ -15,5 +15,5 @@ pipeline {
         }
          post {
          always {
-             bat "docker rmi $registry 1“ // delete the local image at the end
+             bat "docker rmi $registry 1" // delete the local image at the end
 }}}
