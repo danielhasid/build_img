@@ -8,7 +8,7 @@ pipeline {
             steps {
                script {
                     dockerImage = docker.build registry + "1" // give a name and version to image
-                    docker.withRegistry('', registryCredential) 
+                   docker.withRegistry('', registryCredential) {
                     dockerImage.push() // push image to hub
                 }
             }
