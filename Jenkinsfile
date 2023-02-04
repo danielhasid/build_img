@@ -1,6 +1,6 @@
 pipeline {
     environment {
-    registry = "dhasid1/daniel_repository"  // he name of your user and repository (which can be created manually)
+    registry = "danielhasid/build_img"  // he name of your user and repository (which can be created manually)
     registryCredential = 'ckfa' // The credentials used to your repo
     dockerImage = "python_img" // will be overridden later
   }
