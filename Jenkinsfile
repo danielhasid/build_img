@@ -1,21 +1,36 @@
 pipeline {
-    agent any
-    environment {
-    registry = "dhasid1/daniel_repository"  // he name of your user and repository (which can be created manually)
-    registryCredential ='dckr_pat_kKyIq3KDfxfhMOSPmT-9K5VaN2M' // The credentials used to your repo
-    dockerImage = "img1" // will be overridden later
+  environment {
+    registry = "dhasid1/daniel_repository"
+    registryCredential = 'dockerhub'
+    dockerImage = ''
   }
-    stages{
-        stage('build and push image') {
-            steps {
-               script {
-                   echo "$BUILD_NUMBER"
-                    dockerImage = docker.build registry + ":$BUILD_NUMBER" // give a name and version to image
-                   docker.withRegistry('', registryCredential) 
-                    dockerImage.push() // push image to hub
-                }
-            }
-        }
+  agent any
+  stages {
+    stage('Cloning Git') {
+      steps {
+        git 'https://github.com/gustavoapolinario/microservices-node-example-todo-frontend.git'
+      }
     }
-
+    stage('Building image') {
+      steps{
+        script {
+          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+        }
+      }
+    }
+    stage('Deploy Image') {
+      steps{
+        script {
+          docker.withRegistry( '', registryCredential ) {
+            dockerImage.push()
+          }
+        }
+      }
+    }
+    stage('Remove Unused docker image') {
+      steps{
+        sh "docker rmi $registry:$BUILD_NUMBER"
+      }
+    }
+  }
 }
