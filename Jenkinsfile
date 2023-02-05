@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
     registry = "dhasid1/daniel_repository"  // he name of your user and repository (which can be created manually)
-    registryCredential ='Docker1' // The credentials used to your repo
+    registryCredential ='Docker2' // The credentials used to your repo
     dockerImage = "img1" // will be overridden later
   }
     stages{
