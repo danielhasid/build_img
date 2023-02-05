@@ -5,6 +5,7 @@ pipeline {
     registryCredential ='Docker1' // The credentials used to your repo
     dockerImage = "" // will be overridden later
   }
+    stages{
         stage('build and push image') {
             steps {
                script {
@@ -15,7 +16,7 @@ pipeline {
                 }
             }
         }
-        
+    }
          post {
          always {
              bat "docker rmi $registry:$BUILD_NUMBER" // delete the local image at the end
