@@ -11,7 +11,7 @@ pipeline {
                script {
                    echo "$BUILD_NUMBER"
                     dockerImage = docker.build registry + ":$BUILD_NUMBER" // give a name and version to image
-                   docker.withRegistry('https://hub.docker.com/', registryCredential) 
+                   docker.withRegistry('', registryCredential) 
                     dockerImage.push() // push image to hub
                 }
             }
