@@ -19,4 +19,4 @@ pipeline {
          post {
          always {
              bat "docker rmi $registry:$BUILD_NUMBER" // delete the local image at the end
-         }}}
+         }}
