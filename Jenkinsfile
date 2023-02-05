@@ -1,4 +1,5 @@
 pipeline {
+    echo "step1"
     environment {
     registry = "dhasid1/daniel_repository"  // he name of your user and repository (which can be created manually)
     registryCredential ='Docker_hub' // The credentials used to your repo
@@ -7,6 +8,7 @@ pipeline {
         stage('build and push image') {
             steps {
                script {
+                   echo "$BUILD_NUMBER"
                     dockerImage = docker.build registry + ":$BUILD_NUMBER" // give a name and version to image
                    docker.withRegistry('https://hub.docker.com/repository/docker/', registryCredential) {
                     dockerImage.push() // push image to hub
