@@ -1,5 +1,4 @@
 pipeline {
-    echo "step1"
     environment {
     registry = "dhasid1/daniel_repository"  // he name of your user and repository (which can be created manually)
     registryCredential ='Docker1' // The credentials used to your repo
