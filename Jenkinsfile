@@ -10,7 +10,7 @@ pipeline {
                script {
                    echo "$BUILD_NUMBER"
                     dockerImage = docker.build registry + ":$BUILD_NUMBER" // give a name and version to image
-                   docker.withRegistry('', registryCredential) {
+                   docker.withRegistry('', registryCredential) 
                     dockerImage.push() // push image to hub
                 }
             }
@@ -19,4 +19,5 @@ pipeline {
          post {
          always {
              bat "docker rmi $registry:$BUILD_NUMBER" // delete the local image at the end
-         }}
+         }
+         }
