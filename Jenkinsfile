@@ -8,7 +8,7 @@ pipeline {
             steps {
                script {
                     dockerImage = docker.build registry + ":$BUILD_NUMBER" // give a name and version to image
-                   docker.withRegistry('https://hub.docker.com/repository/docker/dhasid1/daniel_repository', registryCredential) {
+                   docker.withRegistry('https://hub.docker.com/repository/docker/', registryCredential) {
                     dockerImage.push() // push image to hub
                 }
             }
