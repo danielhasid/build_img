@@ -2,7 +2,7 @@ pipeline {
     echo "step1"
     environment {
     registry = "dhasid1/daniel_repository"  // he name of your user and repository (which can be created manually)
-    registryCredential ='Docker_hub' // The credentials used to your repo
+    registryCredential ='Docker' // The credentials used to your repo
     dockerImage = "" // will be overridden later
   }
         stage('build and push image') {
