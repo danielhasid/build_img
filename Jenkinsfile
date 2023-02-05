@@ -17,9 +17,5 @@ pipeline {
             }
         }
     }
-         post {
-         always {
-              sh "docker rmi $registry:$BUILD_NUMBER" // delete the local image at the end
-         }
-         }
+
 }
