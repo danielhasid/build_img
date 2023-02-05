@@ -7,7 +7,7 @@ pipeline {
         stage('build and push image') {
             steps {
                script {
-                    dockerImage = docker.build registry // give a name and version to image
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER" // give a name and version to image
                    docker.withRegistry(", registryCredential) {
                     dockerImage.push() // push image to hub
                 }
@@ -16,5 +16,5 @@ pipeline {
         
          post {
          always {
-             bat "docker rmi $registry" // delete the local image at the end
+             bat "docker rmi $registry:$BUILD_NUMBER" // delete the local image at the end
          }}}
